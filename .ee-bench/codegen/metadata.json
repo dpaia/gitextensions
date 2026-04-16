@@ -1,0 +1,26 @@
+{
+  "instance_id": "gitextensions__gitextensions-12211",
+  "benchmark_type": "codegen",
+  "expected": {
+    "fail_to_pass": [
+      "Not initialized yet"
+    ],
+    "pass_to_pass": [
+      "Not initialized yet"
+    ]
+  },
+  "eval": {
+    "test_framework": "",
+    "env_setup_version": "1.0",
+    "run_tests_version": "1.0"
+  },
+  "environment": {
+    "project_root": "/app",
+    "dockerfile_tag": "gitextensions__gitextensions"
+  },
+  "language": "csharp",
+  "execution_flags": "",
+  "fields": {
+    "repo": "gitextensions/gitextensions"
+  }
+}

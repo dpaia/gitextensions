@@ -52,6 +52,12 @@ RUN git clone https://github.com/{{ instance.owner }}/{{ instance.repo_name }}.g
 WORKDIR /app
 RUN git checkout {{ instance.base_commit }}
 
+RUN git submodule update --init --recursive && \
+    echo '{"sdk":{"version":"10.0.100-preview.5.25277.114","allowPrerelease":true,"rollForward":"latestMajor"}}' > global.json && \
+    sed -i '/\[assembly: ConfigureJoinableTaskFactory\]/d' ./tests/app/UnitTests/GitCommands.Tests/Properties/AssemblyInfo.cs && \
+    dotnet add "./tests/app/UnitTests/GitCommands.Tests/GitCommands.Tests.csproj" package JUnitTestLogger && \
+    dotnet build "./tests/app/UnitTests/GitCommands.Tests/GitCommands.Tests.csproj"
+
 LABEL ee-bench.type="codegen"
 LABEL ee-bench.version="1.0"
 RUN rm -rf /app/.ee-bench/ 2>/dev/null || true
